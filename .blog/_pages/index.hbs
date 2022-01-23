@@ -1,0 +1,14 @@
+---
+title: All Posts
+slug: index
+---
+
+<ul class="posts">
+  {{#each posts}}
+    {{#if this.meta.published}}
+      <li class="post">
+        <a href={{this.slug}}>{{ this.meta.title }}</a>
+      </li>
+    {{/if}}
+  {{/each}}
+</ul>

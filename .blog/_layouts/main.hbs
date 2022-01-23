@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    {{#if page.meta.title}}
+      <title>{{ page.meta.title}}</title>
+    {{/if}}
+    {{#if post.meta.title}}
+      <title>{{ post.meta.title}}</title>
+    {{/if}}
+    <link rel="stylesheet" href="{{ config.ASSETS_PATH }}/styles.css">
+  </head>
+  <body class="content">
+    <div class="menu">
+      <div class="menu__inner container">
+        <h1 class="menu__header subheader">
+          <a href=/>{{ config.BLOG_TITLE }}</a>
+
+          {{#if post.meta.title}}
+            <span>:&nbsp;</span>
+            <h2 class="menu__header" id="{{post.meta.title}}">
+              <a href="#header">{{post.meta.title}}</a>
+            </h2>
+          {{/if}}
+
+          {{#if page.meta.title}}
+            <span>:&nbsp;</span>
+            <h2 class="menu__header" id="{{page.meta.title}}">
+              <a href="#header">{{page.meta.title}}</a>
+            </h2>
+          {{/if}}
+
+        </h1>
+        <ul class="menu__links">
+          {{#each pages}}
+            <li class="menu__link">
+              <a href="/{{this.slug}}">{{this.meta.title}}</a>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+    <div class="content__inner">
+      <div class="page container" id="header">
+
+        {{#if post.includes}}
+          <div class="toc">
+            <h3 class="toc__header subheader">
+              <a href="#header">Table of Content</a>
+            </h3>
+            <ul class="toc__list">
+              {{#each post.includes}}
+                <li class="toc__item subheader">
+                  <a href="#{{this.meta.title}}">{{this.meta.title}}</a>
+                </li>
+              {{/each}}
+            </ul>
+          </div>
+        {{/if}}
+
+        {{{ content }}}
+      </div>
+    </div>
+  </body>
+</html>
