@@ -1,0 +1,14 @@
+---
+title: All Posts
+published: True
+---
+
+<ul class="posts">
+  {{#each posts}}
+    {{#unless this.data.is_private}}
+      <li class="post">
+        <a href={{this.data.slug}}>{{ this.data.title }}</a>
+      </li>
+    {{/unless}}
+  {{/each}}
+</ul>

@@ -64,6 +64,10 @@ a:visited {
   overflow-y: scroll;
 }
 
+.content__inner img {
+  max-width: 100%;
+}
+
 .container {
   padding: 0 1rem 0 2rem;
 }

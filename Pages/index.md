@@ -5,8 +5,6 @@ date: 2021-01-09
 layout: main
 ---
 
-# Hello Obsidian Blog
-
 [[Intro]]
 [[Installation]]
 
