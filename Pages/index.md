@@ -1,5 +1,5 @@
 ---
-title: Hello World
+title: Obsidian Blog Manual
 published: True
 date: 2021-01-09
 layout: main
@@ -7,24 +7,10 @@ layout: main
 
 [[Intro]]
 [[Installation]]
-
-## Usage
-[[Usage Example]]
-[[Live Updates]]
+[[Usage]]
 [[Directory Structure]]
-[[Environment variables]]
+[[Settings]]
+[[Features]]
 
-## Entities
-[[Layouts]]
-[[Pages]]
-[[Pages Context]]
-[[Posts]]
-[[Posts Context]]
-[[Images]]
-[[Image Context]]
-[[Global Context]]
-
-## Advanced Tricks
-[[GitHub Pages Deployment with Actions]]
-
-
+[[Templates]]
+[[Deployment]]

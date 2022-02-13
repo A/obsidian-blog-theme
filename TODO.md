@@ -1,1 +1,0 @@
-- [ ] TODO: Fix Tablet / Phone markup

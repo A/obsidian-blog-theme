@@ -1,54 +1,43 @@
-<!DOCTYPE html>
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    {{#if self.meta.title}}
-      <title>{{self.meta.title}}</title>
-    {{/if}}
+    <title>{{self.title}}</title>
     <link rel="stylesheet" href="{{ config.ASSETS_PATH }}/styles.css">
   </head>
-  <body class="content">
-    <div class="menu">
-      <div class="menu__inner container">
-        <h1 class="menu__header subheader">
-          <a href=/>{{ config.BLOG_TITLE }}</a>
-          {{#if self.meta.title}}
-            <span>:&nbsp;</span>
-            <h2 class="menu__header" id="{{self.title}}">
-              <a href="#header">{{self.title}}</a>
-            </h2>
-          {{/if}}
-        </h1>
-        <ul class="menu__links">
+  <body>
+    <div class="page">
+      <div class="page__pages-list">
+        <h3 class="pages-list__header">Pages</h3>
+        <ul class="pages-list__list">
           {{#each pages}}
-            <li class="menu__link">
-              <a href="/{{this.data.slug}}">{{this.data.title}}</a>
+            <li class="pages-list__item">
+              <a class="pages-list__item-link" href="/{{this.data.slug}}">{{this.data.title}}</a>
             </li>
           {{/each}}
         </ul>
       </div>
-    </div>
-    <div class="content__inner">
-      <div class="page container" id="header">
 
+      <div class="page__table-of-content">
         {{#if self.entities}}
-          <div class="toc">
-            <h3 class="toc__header subheader">
-              <a href="#header">Table of Content</a>
-            </h3>
-            <ul class="toc__list">
-              {{#each self.entities}}
-                {{#if this.data.data.title}}
-                  <li class="toc__item subheader">
-                    <a href="#{{this.data.data.id}}">{{this.data.data.title}}</a>
-                  </li>
-                {{/if}}
-              {{/each}}
-            </ul>
-          </div>
+          <h3 class="table-of-content__header">
+            <a class="table-of-content__header-link" href="#header">Table of Content</a>
+          </h3>
+          <ul class="toc__list">
+            {{#each self.entities}}
+              {{#if this.data.title}}
+                  {{#if this.data.content}}
+                    <li class="table-of-content__item">
+                      <a class="table-of-content__item-link" href="#{{this.data.id}}">{{this.data.title}}</a>
+                    </li>
+                  {{/if}}
+              {{/if}}
+            {{/each}}
+          </ul>
         {{/if}}
+      </div>
 
+      <div class="page__content">
+        <h2><a href="/{{self.slug}}">{{self.title}}</h2>
         {{{ content }}}
       </div>
     </div>

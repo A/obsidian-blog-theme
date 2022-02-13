@@ -1,5 +1,4 @@
 ---
-title: Layouts
 published: True
 ---
 
@@ -11,18 +10,18 @@ Layouts are old good handlebars layouts compiled with a `global_context` and `pa
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{{ title }}</title>
-    <link rel="stylesheet" href="{{ config.ASSETS_PATH }}/styles.css">
+    <title>{{ self.title }}</title>
+    <link rel="stylesheet" href="{{ config.public_dir }}/styles.css">
   </head>
   <body>
     <h1 class="menu__header">
-      <a href=/>{{ config.BLOG_TITLE }}</a>
+      <a href=/>{{ config.blog_title }}</a>
     </h1>
     <div class="menu">
       <ul class="links">
         {{#each pages}}
           <li class="link">
-            <a href="/{{this.slug}}">{{this.meta.title}}</a>
+            <a href="/{{this.slug}}">{{this.title}}</a>
           </li>
         {{/each}}
       </ul>

@@ -5,8 +5,12 @@ published: True
 
 Images are processed in 2 steps:
 
-1. **Parsing step**.
-	- Parser inlines all wikilinks into the post
-	- Parser collects all images used in the post
-	- Parser updates image links in the post markdown according to the `ASSETS_DEST_DIR`
-2. **Build step** where builder just takes `imgs` from the post and copies it to the `ASSETS_DEST_DIR`
+### Parsing
+
+All images are parsed into `asset_entity` objects contains their placeholders, alts, and urls.
+
+### Building
+
+During the build image files are copied under `.build` dir, and urls are updated accordingly. Then images are rendered into HTML.
+
+To point to a specific image, use `config.public_dir` prefix in a handlebars template.

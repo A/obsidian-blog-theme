@@ -7,14 +7,10 @@ published: True
 
 ```
 {
-  "config": {
-    "ASSETS_PATH": "/${ASSETS_DEST_DIR}",
-    "BLOG_TITLE": BLOG_TITLE,
-  },
+  "config": Config
+  "self": Page, # refers to the active page
   "layouts": dict[str, Layout],
-  "posts": list[Post],
-  "pages": list[Page],
+  "posts": list[Page], # list of posts
+  "pages": list[Page], # list of pages
 })
 ```
-
-For pages and posts global context is merged with `page_context` and `post_context` accordingly.

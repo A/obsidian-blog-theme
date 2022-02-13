@@ -19,7 +19,8 @@ _blog
     └── index.hbs
 ```
 
-Now let me briefly explain each directory inside of `_blog`:
+Let me briefly explain each directory inside of `_blog`:
+
 - `_assets` are static files, such as `css`, `js` or images are always being copied into resulting build.
 - `_layouts` is a room for handlebars layout files. You can specify different layouts for diferent pages and posts by setting `layout: <layout_name>` in the [yaml-frontmatter][frontmatter] part of the file.
 - `_pages` is where handlebars page templates live. Like `about`, `contacts`, `all-posts`, `my cv` and so on.

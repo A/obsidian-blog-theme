@@ -1,0 +1,15 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{{self.title}}</title>
+    <link rel="stylesheet" href="{{ config.ASSETS_PATH }}/styles.css">
+  </head>
+  <body>
+    <div class="page">
+      <div class="page__content">
+        <h2><a href="/{{self.slug}}">{{self.title}}</h2>
+        {{{ content }}}
+      </div>
+    </div>
+  </body>
+</html>
