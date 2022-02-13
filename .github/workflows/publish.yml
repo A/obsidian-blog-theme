@@ -23,7 +23,7 @@ jobs:
         run: obsidian-blog
 
       - name: Add gh-pages CNAME
-        run: echo ${{ secrets.DOMAIN }} > .build/CNAME
+        run: echo ${{ secrets.CNAME }} > .build/CNAME
 
       - uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
