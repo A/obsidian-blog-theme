@@ -6,7 +6,7 @@ on:
       - "master"
 
 env:
-  PYTHON_VERSION: 3.12.6
+  PYTHON_VERSION: 3.10.15
 
 jobs:
   build-and-deploy:
