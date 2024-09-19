@@ -8,7 +8,6 @@ html, body {
 
 body {
   padding: 1rem;
-
 }
 
 * {
@@ -93,7 +92,7 @@ hr + hr {
 @media (prefers-color-scheme: dark) {
   html {
     filter: invert() hue-rotate(200deg);
-    background: black;
+    background: white;
   }
 
   .page__content img {

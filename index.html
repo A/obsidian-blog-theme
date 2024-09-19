@@ -6,18 +6,6 @@
   </head>
   <body>
     <div class="page">
-      <div class="page__pages-list">
-        <h3 class="pages-list__header">Pages</h3>
-        <ul class="pages-list__list">
-            <li class="pages-list__item">
-              <a class="pages-list__item-link" href="/index.html">Obsidian Blog Manual</a>
-            </li>
-            <li class="pages-list__item">
-              <a class="pages-list__item-link" href="/all-posts.html">All Posts</a>
-            </li>
-        </ul>
-      </div>
-
       <div class="page__table-of-content">
           <h3 class="table-of-content__header">
             <a class="table-of-content__header-link" href="#header">Table of Content</a>
@@ -42,49 +30,7 @@
                       <a class="table-of-content__item-link" href="#features">Features</a>
                     </li>
                     <li class="table-of-content__item">
-                      <a class="table-of-content__item-link" href="#notes-parsing">Notes Parsing</a>
-                    </li>
-                    <li class="table-of-content__item">
-                      <a class="table-of-content__item-link" href="#assets-processing">Assets Processing</a>
-                    </li>
-                    <li class="table-of-content__item">
-                      <a class="table-of-content__item-link" href="#headings-generation">Headings Generation</a>
-                    </li>
-                    <li class="table-of-content__item">
-                      <a class="table-of-content__item-link" href="#handlebars-templates">Handlebars Templates</a>
-                    </li>
-                    <li class="table-of-content__item">
-                      <a class="table-of-content__item-link" href="#privacy">Privacy</a>
-                    </li>
-                    <li class="table-of-content__item">
-                      <a class="table-of-content__item-link" href="#title-detection">Title Detection</a>
-                    </li>
-                    <li class="table-of-content__item">
-                      <a class="table-of-content__item-link" href="#dev-mode">Dev Mode</a>
-                    </li>
-                    <li class="table-of-content__item">
-                      <a class="table-of-content__item-link" href="#further-reading-section">Further Reading Section</a>
-                    </li>
-                    <li class="table-of-content__item">
-                      <a class="table-of-content__item-link" href="#notes-linkification">Notes Linkification</a>
-                    </li>
-                    <li class="table-of-content__item">
                       <a class="table-of-content__item-link" href="#templates">Templates</a>
-                    </li>
-                    <li class="table-of-content__item">
-                      <a class="table-of-content__item-link" href="#global-context">Global Context</a>
-                    </li>
-                    <li class="table-of-content__item">
-                      <a class="table-of-content__item-link" href="#config-context">Config Context</a>
-                    </li>
-                    <li class="table-of-content__item">
-                      <a class="table-of-content__item-link" href="#layouts">Layouts</a>
-                    </li>
-                    <li class="table-of-content__item">
-                      <a class="table-of-content__item-link" href="#pages">Active Page Context</a>
-                    </li>
-                    <li class="table-of-content__item">
-                      <a class="table-of-content__item-link" href="#images">Images</a>
                     </li>
                     <li class="table-of-content__item">
                       <a class="table-of-content__item-link" href="#deployment">Deployment</a>
@@ -180,204 +126,25 @@ Options:
     <a href="#features">Features</a>
 </h2>
 
-<h2 id="notes-parsing" class="subheader">
-    <a href="#notes-parsing">Notes Parsing</a>
-</h2>
-
-<p>Parser starts at 2 main directories: <code>Pages</code> and <code>Posts</code>. It recursively processes all embedded notes if they are placed on the new line and don't have any text around. Parser also supports cycles detection, and shouldn't fail in this case.</p>
-<p>Parser recursively collects all entities (such as images, notes, links, etc) from your posts and pages and build a flat list of them.</p>
-<hr />
-<h2 id="assets-processing" class="subheader">
-    <a href="#assets-processing">Assets Processing</a>
-</h2>
-
-<p>During the build, <code>obsidian-blog</code> takes all local files used in your posts and pages, copies them into <code>.build</code> directory and updates their links accordingly.</p>
-<hr />
-<h2 id="headings-generation" class="subheader">
-    <a href="#headings-generation">Headings Generation</a>
-</h2>
-
-<p><code>obsidian-blog</code> renders a header with note <code>title</code> for each note with a non-empty content. This header has <code>id</code> attribute and can be used as an anchor.</p>
-<p>As it was mentioned before, there are plenty of ways to define titles, and you can even skip it to use filename instead.</p>
-<hr />
-<h2 id="handlebars-templates" class="subheader">
-    <a href="#handlebars-templates">Handlebars Templates</a>
-</h2>
-
-<p>Both posts and pages are post-processed by <code>handlebars</code>.</p>
-<hr />
-<h2 id="privacy" class="subheader">
-    <a href="#privacy">Privacy</a>
-</h2>
-
-<p><code>obsidian-blog</code> don't publish anything explicitly marked as published in the frontmatter section:</p>
-<pre><code>---
-published: True
----
-</code></pre>
-<p>Non-published notes are still being parsed, but ignored during the rendering.</p>
-<p>There is also the draft feature. You can annotate your post <code>draft: True</code> to make it visible if you start <code>obsidian-blog</code> with the <code>--drafts</code> flag.</p>
-<hr />
-<h2 id="title-detection" class="subheader">
-    <a href="#title-detection">Title Detection</a>
-</h2>
-
-<p><code>obsidian-blog</code> has a title-detection mechanism:</p>
-<ol>
-<li>If note was included with inline title like <code>[[this | one]]</code>, the <code>one</code> will be a title</li>
-<li>If note has a <code>title</code> attribute in the frontmatter section, it will be used.</li>
-<li>Otherwise a filename will be used as a title.</li>
-</ol>
-<h3>Filename Title Delimeters</h3>
-<p>If note has no other title then a filename, and filename contains the delimeter (<code>-</code>), the rightest section will be used as a title. This helps if you name your notes with a category prefix, like <code>Prometheus - PromQL Selectors.md</code> becomes <code>PromQL Selectors</code>. It's a bit opinionated, but this convention saves time.</p>
-<hr />
-<h2 id="dev-mode" class="subheader">
-    <a href="#dev-mode">Dev Mode</a>
-</h2>
-
-<p>Dev mode is useful to write and check your drafts locally:</p>
-<pre><code>obsidian-blog -dws
-</code></pre>
-<hr />
-<h2 id="further-reading-section" class="subheader">
-    <a href="#further-reading-section">Further Reading Section</a>
-</h2>
-
-<p>If a note has <code>links</code> list in the frontmatter, this links will be rendered just under the note as the Further Reading block</p>
-<pre><code>links:
-  - name: Example
-    url: https://example.com
-</code></pre>
-<p><strong>Further Reading</strong>:</p>
-<ul>
-<li><a href="https://example.com" referrerpolicy="no-referrer" rel="noopener noreferrer" target="_blank" title="Example">Example</a></li>
-</ul>
-<hr />
-<h2 id="notes-linkification" class="subheader">
-    <a href="#notes-linkification">Notes Linkification</a>
-</h2>
-
-<p>Another opinionated thing: <code>obsidian-blog</code> doesn't consider obsidian links that has text around as notes that should be unwrapped into the post. It seems natural (at least for me), that this links should be processed as links.
-<code>obsidian-blog</code> checks if the notes have <code>link</code> attribute in the frontmatter section, and if they do, it replaces this includes as old good html links.</p>
-<p>That's really useful on a large vault, when you links to a MoC in a specific note, and you don't want the whole MoC to be populated into your post.</p>
-<hr />
+<p>Notes Parsing
+Assets Processing</p>
+<p>Headings Generation</p>
+<p>Handlebars Templates
+Privacy
+Title Detection
+Dev Mode
+Further Reading Section
+Notes Linkification</p>
 <hr />
 <h2 id="templates" class="subheader">
     <a href="#templates">Templates</a>
 </h2>
 
-<h2 id="global-context" class="subheader">
-    <a href="#global-context">Global Context</a>
-</h2>
-
-<p><code>global_context</code> is always accessible in all handlebars templates (layouts, pages)  and includes few variables:</p>
-<pre><code>{
-  &quot;config&quot;: Config
-  &quot;self&quot;: Page, # refers to the active page
-  &quot;layouts&quot;: dict[str, Layout],
-  &quot;posts&quot;: list[Page], # list of posts
-  &quot;pages&quot;: list[Page], # list of pages
-})
-</code></pre>
-<hr />
-<h2 id="config-context" class="subheader">
-    <a href="#config-context">Config Context</a>
-</h2>
-
-<p>Config is passed to handlebars templates as <code>config</code> variable.</p>
-<p><strong>Further Reading</strong>:</p>
-<ul>
-<li><a href="https://github.com/A/obsidian-blog/blob/master/src/dataclasses/config_data.py" referrerpolicy="no-referrer" rel="noopener noreferrer" target="_blank" title="Config Data">Config Data</a></li>
-</ul>
-<hr />
-<h2 id="layouts" class="subheader">
-    <a href="#layouts">Layouts</a>
-</h2>
-
-<p>Layouts are old good handlebars layouts compiled with a <code>global_context</code> and <code>page_context</code> or <code>post_context</code> accordingly. There is a simple example layout renders links to all pages and a content.</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-
-&lt;html lang=&quot;en&quot;&gt;
-  &lt;head&gt;
-    &lt;meta charset=&quot;utf-8&quot;&gt;
-    &lt;title&gt;{{ self.title }}&lt;/title&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;{{ config.public_dir }}/styles.css&quot;&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;h1 class=&quot;menu__header&quot;&gt;
-      &lt;a href=/&gt;{{ config.blog_title }}&lt;/a&gt;
-    &lt;/h1&gt;
-    &lt;div class=&quot;menu&quot;&gt;
-      &lt;ul class=&quot;links&quot;&gt;
-        {{#each pages}}
-          &lt;li class=&quot;link&quot;&gt;
-            &lt;a href=&quot;/{{this.slug}}&quot;&gt;{{this.title}}&lt;/a&gt;
-          &lt;/li&gt;
-        {{/each}}
-      &lt;/ul&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;content&quot;&gt;
-      &lt;div class=&quot;page&quot;&gt;
-        {{{ content }}}
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-<p>In a post or a page, you can specify which one you'd like to use to render the content within the yaml-frontmatter block:</p>
-<pre><code>---
-title: Hello World
-date: 2021-01-09
-layout: main
----
-</code></pre>
-<p>If layout is not specified, <code>main</code> will be used as default one.</p>
-<hr />
-<h2 id="pages" class="subheader">
-    <a href="#pages">Active Page Context</a>
-</h2>
-
-<p>To get some data from the current page rendered in a handlebars template, you can refere to <code>self</code> variable, which has properties listed below:</p>
-<ul>
-<li><code>self.content</code> refers to the rendered html content of the page</li>
-<li><code>self.entities</code> refers to the list of entities parsed from a page and its children. That's useful to render ToCs, etc</li>
-<li><code>self.title</code></li>
-<li><code>self.date</code></li>
-<li><code>self.slug</code> is a path after <code>/</code> the page is published to</li>
-<li><code>self.meta</code> is a dict contains frontmatter variables of the page</li>
-</ul>
-<p>Pages are handlebars templates support a yaml-frontmatter section. Pages stands for anything but posts. </p>
-<p>This is an example of <code>index.hbs</code> page renders all posts from the blog:</p>
-<pre><code class="language-handlebars">---
-title: Posts
----
-&lt;h1&gt;{{ self.title }}&lt;/h1&gt;
-&lt;ul&gt;
-  {{#each posts}}
-      &lt;li&gt;
-        &lt;span&gt;[{{ this.date }}]: &lt;/span&gt;
-        &lt;a href=&quot;/{{this.slug}}&quot;&gt;{{ this.title }}&lt;/a&gt;
-      &lt;/li&gt;
-  {{/each}}
-&lt;/ul&gt;
-
-</code></pre>
-<p><strong>Further Reading</strong>:</p>
-<ul>
-<li><a href="https://github.com/A/obsidian-blog/blob/master/src/dataclasses/content_data.py" referrerpolicy="no-referrer" rel="noopener noreferrer" target="_blank" title="Content Data Implementation">Content Data Implementation</a></li>
-</ul>
-<hr />
-<h2 id="images" class="subheader">
-    <a href="#images">Images</a>
-</h2>
-
-<p>Images are processed in 2 steps:</p>
-<h3>Parsing</h3>
-<p>All images are parsed into <code>asset_entity</code> objects contains their placeholders, alts, and urls.</p>
-<h3>Building</h3>
-<p>During the build image files are copied under <code>.build</code> dir, and urls are updated accordingly. Then images are rendered into HTML.</p>
-<p>To point to a specific image, use <code>config.public_dir</code> prefix in a handlebars template.</p>
-<hr />
+<p>Global Context
+Config Context
+Layouts
+Active Page Context
+Images</p>
 <hr />
 <h2 id="deployment" class="subheader">
     <a href="#deployment">Deployment</a>
