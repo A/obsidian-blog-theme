@@ -6,17 +6,6 @@
   </head>
   <body>
     <div class="page">
-      <div class="page__pages-list">
-        <h3 class="pages-list__header">Pages</h3>
-        <ul class="pages-list__list">
-          {{#each pages}}
-            <li class="pages-list__item">
-              <a class="pages-list__item-link" href="/{{this.data.slug}}">{{this.data.title}}</a>
-            </li>
-          {{/each}}
-        </ul>
-      </div>
-
       <div class="page__table-of-content">
         {{#if self.entities}}
           <h3 class="table-of-content__header">
